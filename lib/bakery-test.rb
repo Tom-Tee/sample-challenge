@@ -76,15 +76,22 @@ def create_wording(order, array, bakery_hash)
   array.each { |n| amount += bakery_hash[n] }
   string_creation = ""
   p array
-
+  p order
+  p bakery_hash
   array.each do |number|
     counter = 1
+    p counter
     new_string = "#{counter} x #{number} $#{bakery_hash[number].to_s} "
-
+    new_string_incremented = "#{counter+1} x #{number} $#{bakery_hash[number].to_s} "
     if string_creation.include?(bakery_hash[number].to_s)
-      string_creation.gsub! counter.to_s, (counter+1).to_s
+
+      p string_creation
+      string_creation.gsub! new_string, "#{counter+1} x #{number} $#{bakery_hash[number].to_s} "
+      counter +=1
+
     else
       string_creation << new_string
+      p bakery_hash[number].to_s
     end
   end
 
@@ -113,4 +120,4 @@ end
 
 
 
-p  bakery_test("14 MB11")
+p bakery_test("14 MB11")
